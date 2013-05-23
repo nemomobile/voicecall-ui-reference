@@ -49,9 +49,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void show();
-
-protected Q_SLOTS:
-    void onActiveVoiceCallChanged();
 };
 
 #endif // DECLARATIVEVIEW_H

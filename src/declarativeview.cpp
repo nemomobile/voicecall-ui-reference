@@ -69,16 +69,6 @@ DeclarativeView::~DeclarativeView()
     TRACE
 }
 
-void DeclarativeView::onActiveVoiceCallChanged()
-{
-    TRACE
-    if(!this->isVisible())
-    {
-        this->rootContext()->setContextProperty("activationReason", "activeVoiceCallChanged");
-        this->show();
-    }
-}
-
 void DeclarativeView::show()
 {
     TRACE
