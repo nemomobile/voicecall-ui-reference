@@ -19,8 +19,6 @@ DEFINES += APPLICATION_VERSION=\\\"0.1.0\\\"
 DEFINES += APPLICATION_ORGANISATION=\\\"stage.rubyx.co.uk\\\"
 DEFINES += APPLICATION_DOMAIN=\\\"stage.rubyx.co.uk\\\"
 
-INCLUDEPATH +=  ../../lib/src
-
 HEADERS += \
     declarativeview.h \
     dbusadaptor.h

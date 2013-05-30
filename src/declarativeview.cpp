@@ -34,7 +34,7 @@
 ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ****************************************************************************/
-#include "common.h"
+
 #include "declarativeview.h"
 #include "dbusadaptor.h"
 
@@ -42,12 +42,11 @@
 #include <QDeclarativeContext>
 #include <QDBusConnection>
 #include <QCoreApplication>
+#include <QDebug>
 
 DeclarativeView::DeclarativeView(QWidget *parent)
     : QDeclarativeView(parent)
 {
-    TRACE
-
     new DBusAdaptor(this);
     QDBusConnection::sessionBus().registerService("org.nemomobile.voicecall.ui");
     if (!QDBusConnection::sessionBus().registerObject("/", this))
@@ -66,13 +65,10 @@ DeclarativeView::DeclarativeView(QWidget *parent)
 
 DeclarativeView::~DeclarativeView()
 {
-    TRACE
 }
 
 void DeclarativeView::show()
 {
-    TRACE
-
     this->activateWindow();
 
     if(QCoreApplication::arguments().contains("-no-fullscreen"))
