@@ -1,0 +1,31 @@
+Name: voicecall-ui-reference
+Summary: Dialer UI for Nemo Mobile
+Version: 0.0.0
+Release: 1
+Group: Communications/Telephony
+License: BSD
+URL: https://github.com/nemomobile/voicecall-ui-reference
+Sources:
+    - "%{name}-%{version}.tar.bz2"
+Description: "%{summary}."
+Provides:
+    - meego-handset-dialer >= 0.24
+Obsoletes:
+    - meego-handset-dialer < 0.24
+Requires:
+    - voicecall-core
+    - tone-generator
+    - commhistory-daemon
+    - libcommhistory-declarative
+    - mapplauncherd-booster-qtcomponents
+    - qt-components
+PkgConfigBR:
+    - QtDeclarative
+    - qdeclarative-boostable
+Builder: qmake
+Files:
+    - "%{_bindir}/voicecall-ui"
+    - "%{_datadir}/voicecall-ui/qml"
+    - "%{_datadir}/applications/voicecall-ui.desktop"
+    - "%config %{_sysconfdir}/xdg/autostart/voicecall-ui-prestart.desktop"
+    - "%{_libdir}/systemd/user/voicecall-ui-prestart.service"
