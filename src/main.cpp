@@ -34,10 +34,13 @@
 **
 ****************************************************************************/
 
-#include <QApplication>
+#include <QGuiApplication>
 #include "declarativeview.h"
 
-#include <QtDeclarative>
+#include <QQuickView>
+#include <QQmlEngine>
+#include <QDir>
+#include <QDebug>
 
 #ifdef HAS_BOOSTER
 # include <MDeclarativeCache>
@@ -45,17 +48,17 @@
 
 Q_DECL_EXPORT int main(int argc, char **argv)
 {
-    QApplication::setApplicationName(APPLICATION_NAME);
-    QApplication::setApplicationVersion(APPLICATION_VERSION);
-    QApplication::setOrganizationName(APPLICATION_ORGANISATION);
-    QApplication::setOrganizationDomain(APPLICATION_DOMAIN);
+    QGuiApplication::setApplicationName(APPLICATION_NAME);
+    QGuiApplication::setApplicationVersion(APPLICATION_VERSION);
+    QGuiApplication::setOrganizationName(APPLICATION_ORGANISATION);
+    QGuiApplication::setOrganizationDomain(APPLICATION_DOMAIN);
 
     // TODO: boost the view too, once we split DeclarativeView into a window
     // manager only
 #ifdef HAS_BOOSTER
-    QScopedPointer<QApplication> app(MDeclarativeCache::qApplication(argc, argv));
+    QScopedPointer<QGuiApplication> app(MDeclarativeCache::qApplication(argc, argv));
 #else
-    QScopedPointer<QApplication> app(new QApplication(argc, argv));
+    QScopedPointer<QGuiApplication> app(new QGuiApplication(argc, argv));
 #endif
 
     if(!app->arguments().contains("-devel"))

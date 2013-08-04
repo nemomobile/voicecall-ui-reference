@@ -16,16 +16,20 @@ Requires:
     - voicecall-core
     - tone-generator
     - commhistory-daemon
-    - libcommhistory-declarative
-    - mapplauncherd-booster-qtcomponents
-    - qt-components
+    - libcommhistory-qt5-declarative
+    - mapplauncherd-booster-qtcomponents-qt5
+    - qt-components-qt5
+    - nemo-qml-plugin-contacts-qt5
+    - nemo-qml-plugin-thumbnailer-qt5
 PkgConfigBR:
-    - QtDeclarative
-    - qdeclarative-boostable
-Builder: qmake
+    - Qt5Core
+    - Qt5Qml
+    - Qt5Quick
+    - qdeclarative5-boostable
+Builder: qmake5
 Files:
     - "%{_bindir}/voicecall-ui"
     - "%{_datadir}/voicecall-ui/qml"
     - "%{_datadir}/applications/voicecall-ui.desktop"
-    - "%config %{_sysconfdir}/xdg/autostart/voicecall-ui-prestart.desktop"
+    - "%{_datadir}/dbus-1/services/org.nemomobile.voicecall.ui.service"
     - "%{_libdir}/systemd/user/voicecall-ui-prestart.service"

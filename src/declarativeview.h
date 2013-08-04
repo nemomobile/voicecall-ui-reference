@@ -36,13 +36,13 @@
 #ifndef DECLARATIVEVIEW_H
 #define DECLARATIVEVIEW_H
 
-#include <QDeclarativeView>
+#include <QQuickView>
 
-class DeclarativeView : public QDeclarativeView
+class DeclarativeView : public QQuickView
 {
     Q_OBJECT
 public:
-    explicit DeclarativeView(QWidget *parent = 0);
+    explicit DeclarativeView(QQuickWindow *parent = 0);
             ~DeclarativeView();
 
 Q_SIGNALS:
