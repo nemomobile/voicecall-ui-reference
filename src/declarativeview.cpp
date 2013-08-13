@@ -38,25 +38,21 @@
 #include "declarativeview.h"
 #include "dbusadaptor.h"
 
-#include <QDeclarativeEngine>
-#include <QDeclarativeContext>
+#include <QQmlEngine>
+#include <QQmlContext>
 #include <QDBusConnection>
 #include <QCoreApplication>
 #include <QDebug>
 
-DeclarativeView::DeclarativeView(QWidget *parent)
-    : QDeclarativeView(parent)
+DeclarativeView::DeclarativeView(QQuickWindow *parent)
+    : QQuickView(parent)
 {
     new DBusAdaptor(this);
     QDBusConnection::sessionBus().registerService("org.nemomobile.voicecall.ui");
     if (!QDBusConnection::sessionBus().registerObject("/", this))
         qWarning() << Q_FUNC_INFO << "Cannot register DBus object!";
 
-    this->setAttribute(Qt::WA_OpaquePaintEvent);
-    this->setAttribute(Qt::WA_NoSystemBackground);
-    this->viewport()->setAttribute(Qt::WA_OpaquePaintEvent);
-    this->viewport()->setAttribute(Qt::WA_NoSystemBackground);
-    this->setResizeMode(QDeclarativeView::SizeRootObjectToView);
+    this->setResizeMode(QQuickView::SizeRootObjectToView);
 
     this->rootContext()->setContextProperty("__window", this);
 
@@ -69,12 +65,15 @@ DeclarativeView::~DeclarativeView()
 
 void DeclarativeView::show()
 {
-    this->activateWindow();
+    this->requestActivate();
 
     if(QCoreApplication::arguments().contains("-no-fullscreen"))
     {
-        this->setFixedSize(480, 854);
-        QWidget::show();
+        this->setMinimumHeight(854);
+        this->setMaximumHeight(854);
+        this->setMinimumWidth(480);
+        this->setMaximumWidth(480);
+        QQuickWindow::show();
     }
     else
     {
