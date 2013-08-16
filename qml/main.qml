@@ -33,10 +33,10 @@
 ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ****************************************************************************/
-import QtQuick 1.1
-import com.nokia.meego 1.1
+import QtQuick 2.0
+import com.nokia.meego 2.0
 
-import stage.rubyx.voicecall 1.0
+import org.nemomobile.voicecall 1.0
 import org.nemomobile.contacts 1.0
 
 PageStackWindow {

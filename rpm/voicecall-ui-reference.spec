@@ -19,11 +19,15 @@ Source100:  voicecall-ui-reference.yaml
 Requires:   voicecall-core
 Requires:   tone-generator
 Requires:   commhistory-daemon
-Requires:   libcommhistory-declarative
-Requires:   mapplauncherd-booster-qtcomponents
-Requires:   qt-components
-BuildRequires:  pkgconfig(QtDeclarative)
-BuildRequires:  pkgconfig(qdeclarative-boostable)
+Requires:   libcommhistory-qt5-declarative
+Requires:   mapplauncherd-booster-qtcomponents-qt5
+Requires:   qt-components-qt5
+Requires:   nemo-qml-plugin-contacts-qt5
+Requires:   nemo-qml-plugin-thumbnailer-qt5
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(qdeclarative5-boostable)
 BuildRequires:  desktop-file-utils
 Provides:   meego-handset-dialer >= 0.24
 Obsoletes:   meego-handset-dialer < 0.24
@@ -41,7 +45,7 @@ Obsoletes:   meego-handset-dialer < 0.24
 # >> build pre
 # << build pre
 
-%qmake 
+%qmake5 
 
 make %{?jobs:-j%jobs}
 
@@ -55,6 +59,8 @@ rm -rf %{buildroot}
 %qmake_install
 
 # >> install post
+mkdir -p %{buildroot}%{_libdir}/systemd/user/user-session.target.wants
+ln -s ../voicecall-ui-prestart.service %{buildroot}%{_libdir}/systemd/user/user-session.target.wants/
 # << install post
 
 desktop-file-install --delete-original       \
@@ -66,7 +72,9 @@ desktop-file-install --delete-original       \
 %{_bindir}/voicecall-ui
 %{_datadir}/voicecall-ui/qml
 %{_datadir}/applications/voicecall-ui.desktop
-%config %{_sysconfdir}/xdg/autostart/voicecall-ui-prestart.desktop
+%{_datadir}/dbus-1/services/org.nemomobile.voicecall.ui.service
 %{_libdir}/systemd/user/voicecall-ui-prestart.service
+%{_libdir}/systemd/user/user-session.target.wants/voicecall-ui-prestart.service
+
 # >> files
 # << files
