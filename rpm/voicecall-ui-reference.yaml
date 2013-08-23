@@ -13,7 +13,7 @@ Provides:
 Obsoletes:
     - meego-handset-dialer < 0.24
 Requires:
-    - voicecall-core
+    - voicecall-qt5
     - tone-generator
     - commhistory-daemon
     - libcommhistory-qt5-declarative

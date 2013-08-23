@@ -16,7 +16,7 @@ License:    BSD
 URL:        https://github.com/nemomobile/voicecall-ui-reference
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  voicecall-ui-reference.yaml
-Requires:   voicecall-core
+Requires:   voicecall-qt5
 Requires:   tone-generator
 Requires:   commhistory-daemon
 Requires:   libcommhistory-qt5-declarative
