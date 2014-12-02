@@ -47,15 +47,15 @@ Dialog {
 
     state: manager.activeVoiceCall ? manager.activeVoiceCall.statusText : 'disconnected'
 
-    states {
-        State {name:'active'}
-        State {name:'held'}
-        State {name:'dialing'}
-        State {name:'alerting'}
-        State {name:'incoming'}
-        State {name:'waiting'}
+    states: [
+        State {name:'active'},
+        State {name:'held'},
+        State {name:'dialing'},
+        State {name:'alerting'},
+        State {name:'incoming'},
+        State {name:'waiting'},
         State {name:'disconnected'}
-    }
+    ]
 
     Component {
         id:numPadDialog
